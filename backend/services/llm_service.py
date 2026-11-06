@@ -234,6 +234,15 @@ class LLMService:
                         break
                     if re.match(r"^(?:subject|sub|part\s|reference|no\.|1\.|2\.)\s*[:.\-–]", nxt, re.I):
                         break
+                    # Numbered body paragraph of the order ("1. A Court of Inquiry ...")
+                    if re.match(r"^\d+\.\s", nxt):
+                        break
+                    # Common convening-order sections that are never part of the subject
+                    if re.match(
+                        r"^(?:the\s+following|assemble|presiding\s|member\s|by\s+order|place\s+of|down)",
+                        nxt, re.I,
+                    ):
+                        break
                     block.append(nxt)
                 result = re.sub(r"\s+", " ", " ".join(block)).strip()
                 if len(result) >= 12:
@@ -329,7 +338,7 @@ class LLMService:
         month = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*"
         order_no = self._first_match(
             text,
-            r"(?:part\s*I{0,3}\s*order\s*(?:no\.?)?|order\s*(?:no\.?)?)\s*([A-Za-z0-9][\w/\-]{2,})"
+            r"(?:part\s*I{0,3}\s*order\s*(?:no\.?)?|order\s*(?:no\.?)?)\s*([A-Za-z0-9/\-]*\d[\w/\-]*)"
         )
         date = (
             self._first_match(text, rf"\b(?:dt|dated|date)\s*[:.]?\s*([A-Za-z]{{3,9}}\.?\s+20\d{{2}})")
@@ -355,6 +364,86 @@ class LLMService:
             "terms_of_reference": [],
             "executive_summary": subject,
         }
+
+    @classmethod
+    def _build_executive_summary(cls, parsed: Dict[str, Any]) -> str:
+        """Deterministic briefing built ONLY from fields already verified
+        word-for-word against the uploaded order.
+
+        The model's free-text summary is deliberately discarded: a fluent
+        'briefing' is exactly where invented names, dates and incident types
+        slip through. Every component below was either copied verbatim from
+        the OCR text or verified against it, so the summary cannot state
+        anything that is not actually in the uploaded document."""
+        sentences: List[str] = []
+
+        order_no = (parsed.get("order_number") or "").strip()
+        date = (parsed.get("date_of_order") or "").strip()
+        conv = (parsed.get("convening_authority") or "").strip()
+        place = (parsed.get("place_of_assembly") or "").strip()
+
+        # 1) Reference line: number, date, issuing authority -- as printed.
+        ref_bits = []
+        if order_no:
+            ref_bits.append(f"No. {order_no}")
+        if date:
+            ref_bits.append(f"dated {date}")
+        if conv:
+            ref_bits.append(f"issued by {conv}")
+        if ref_bits:
+            sentences.append(f"Convening Order " + ", ".join(ref_bits) + ".")
+
+        # 2) Subject / incident statement, verbatim from the order.
+        subject = (parsed.get("subject_matter") or "").strip()
+        if subject:
+            sentences.append(f"Subject, as stated in the order: '{subject}'")
+
+        # 3) Verified incident particulars only.
+        inc = parsed.get("incident_details") if isinstance(parsed.get("incident_details"), dict) else {}
+        dt = (inc.get("incident_date_time") or "").strip()
+        affected = (inc.get("property_or_personnel_affected") or "").strip()
+        particulars = [p for p in (dt, affected) if p]
+        if particulars:
+            sentences.append("Particulars recorded in the order: " + "; ".join(particulars) + ".")
+
+        # 4) Court composition (verified members only; rank + name, no IC/JC
+        #    labels) and the verified place of assembly.
+        comp_raw = parsed.get("composition_of_court")
+        comp = [m for m in (comp_raw if isinstance(comp_raw, list) else []) if isinstance(m, dict)]
+        members = []
+        for m in comp:
+            person = " ".join(
+                x for x in (str(m.get("rank") or "").strip(), str(m.get("name") or "").strip()) if x
+            )
+            if person:
+                members.append(person)
+        assembly_bits = []
+        if place:
+            assembly_bits.append(f"assembles at {place}")
+        if members:
+            assembly_bits.append("comprises " + "; ".join(members))
+        if assembly_bits:
+            sentences.append("The court " + " and ".join(assembly_bits) + ".")
+
+        # 5) Terms of reference (verified entries only).
+        tor_raw = parsed.get("terms_of_reference")
+        tor_items = [
+            str(t).strip().rstrip(".")
+            for t in (tor_raw if isinstance(tor_raw, list) else [])
+            if isinstance(t, str) and str(t).strip()
+        ]
+        if tor_items:
+            shown = tor_items[:3]
+            tail = " (further tasks as listed in the order)." if len(tor_items) > 3 else "."
+            sentences.append("Terms of reference: " + "; ".join(shown) + tail)
+
+        if not sentences:
+            # Nothing could be verified -- say so plainly instead of inventing.
+            return (
+                "Key particulars could not be verified in the uploaded convening order. "
+                "Please review the original document and re-run the extraction."
+            )
+        return " ".join(sentences)
 
     def parse_convening_order(self, text: str) -> Dict[str, Any]:
         """Parses Convening Order text into structured data.
@@ -493,11 +582,11 @@ class LLMService:
         else:
             parsed["terms_of_reference"] = []
 
-        # 6. Remove internal "IC" / "JC" titles from the briefing text
-        summary = parsed.get("executive_summary") or ""
-        summary = re.sub(r"\bIC\b", "", summary)
-        summary = re.sub(r"\bJC\b", "", summary)
-        parsed["executive_summary"] = re.sub(r"\s+", " ", summary).strip()
+        # 6. The executive summary is REBUILT deterministically from fields that
+        #    were verified verbatim above. The model's free-text briefing is
+        #    never shown: a fluent summary is exactly where invented names,
+        #    dates and incident types would slip into the UI.
+        parsed["executive_summary"] = self._build_executive_summary(parsed)
 
         return parsed
 
@@ -606,12 +695,17 @@ class LLMService:
             "4. Every entry in chronology_of_events, exhibits_and_their_findings, financial_loss_breakdown and "
             "procedural_compliance must cite a document that was actually supplied.\n"
             "5. Do not mention or cite any rule, section or paragraph numbers.\n"
-            "6. Ensure the output is 100% valid JSON only."
+            "6. Describe each exhibit ONLY by what its OWN supplied text shows. Never describe what such a "
+            "document 'would normally' contain; if its text is unreadable or missing in the supplied copy, write "
+            "the exact string 'Contents not readable in the supplied copy'. Likewise, never infer injuries, "
+            "casualties, delays or fault that no supplied document states.\n"
+            "7. Ensure the output is 100% valid JSON only."
         )
 
         user_prompt = (
             "FACT-EXTRACTION RULES: answer only from the documents below; copy values verbatim; "
-            "write 'Not stated in the documents' where a fact is absent; invent nothing; cite no rule numbers.\n\n"
+            "write 'Not stated in the documents' where a fact is absent; describe each exhibit only by "
+            "what its own supplied text shows; invent nothing; cite no rule numbers.\n\n"
             f"--- CONVENING ORDER ---\n{convening_order_text}\n\n"
             f"--- SUPPORTING EVIDENCE & EXHIBITS ---\n{supporting_docs_text}\n\n"
             f"--- RECORDED WITNESS STATEMENTS ---\n{witness_statements_text if witness_statements_text else 'No witness statements recorded yet.'}\n\n"
