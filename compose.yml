@@ -1,0 +1,81 @@
+# Production stack -- setup.md section 3.
+#
+#   docker compose up -d --pull never --no-build
+#
+# Images are pre-built and pre-loaded; this file never builds or pulls
+# (pull_policy: never + `--no-build` on the command line).
+#
+# Design per setup.md section 3:
+#   * the network is internal for backend + Ollama (no external route)
+#   * Ollama has NO published port (only the backend reaches it)
+#   * only the frontend is published, and only on loopback
+#   * GROQ_API_KEY is passed empty so the backend's cloud fallback cannot run
+#
+# NOTE on the two networks (do not "simplify" this away):
+# a container attached ONLY to an internal network gets its published port
+# silently dropped by the engine (moby/moby#53256, moby/moby#36174) -- Docker
+# starts it fine and never binds the host port, so /api/health would fail.
+# The frontend is therefore dual-homed: coi-internal (service traffic) plus
+# host-access (a plain bridge that exists ONLY to carry the loopback publish).
+# Backend and Ollama stay on coi-internal only, so they have no route out.
+name: legal
+
+services:
+  backend:
+    image: legal-backend:1.0
+    container_name: legal-backend
+    pull_policy: never
+    restart: unless-stopped
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=gemma3:4b
+      - OLLAMA_NUM_CTX=16384
+      - OLLAMA_TIMEOUT=900
+      - OLLAMA_RETRIES=2
+      - MAX_DOC_CHARS_IN_PROMPT=3500
+      - GROQ_API_KEY=
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./data:/data
+    depends_on:
+      - ollama
+    networks:
+      - coi-internal
+
+  frontend:
+    image: legal-frontend:1.0
+    container_name: legal-frontend
+    pull_policy: never
+    restart: unless-stopped
+    # Loopback binding is intentional (setup.md section 3 security notes):
+    # the UI is never reachable from a LAN. The host-access network below
+    # exists only so this published port actually binds (see header note).
+    ports:
+      - "127.0.0.1:8080:80"
+    environment:
+      - BACKEND_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - coi-internal
+      - host-access
+
+  ollama:
+    image: ollama/ollama:0.6.8
+    container_name: legal-ollama
+    pull_policy: never
+    restart: unless-stopped
+    volumes:
+      - ./offline/ollama:/root/.ollama
+    environment:
+      - OLLAMA_MODELS=/root/.ollama/models
+    networks:
+      - coi-internal
+
+networks:
+  coi-internal:
+    internal: true
+  # Plain bridge, attached to the frontend ONLY. It exists solely because the
+  # engine silently drops published ports on internal-only networks. Backend
+  # and Ollama are never attached here, so they still have no route out.
+  host-access: {}

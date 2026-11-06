@@ -1,0 +1,42 @@
+# Debug overlay -- setup.md section 6 (mounted source, live reload, offline).
+#
+#   docker compose -f compose.yml -f compose.debug.yml up -d --pull never --no-build
+#
+# UI      http://localhost:5173   (Vite, this file)
+# API     http://localhost:8000/docs   (Uvicorn with --reload, this file)
+# Prod UI http://localhost:8080        (compose.yml alone)
+#
+# Backend source is mounted over /app; image Python packages stay intact.
+# Frontend source is mounted over /app; the named volume below shadows the
+# Windows node_modules with Linux deps taken from the debug image on first
+# start (never populate it from a Windows checkout).
+name: legal
+
+services:
+  backend:
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --proxy-headers
+    # Loopback binding is intentional (setup.md section 6: /docs on localhost).
+    # host-access is added so the published port actually binds -- the engine
+    # silently drops ports on internal-only networks (see compose.yml header).
+    ports:
+      - "127.0.0.1:8000:8000"
+    networks:
+      - host-access
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    image: legal-frontend-debug:1.0
+    # Replace (not merge with) the production 8080 mapping: the debug image
+    # runs Vite on 5173, not nginx on 80. Requires Compose >= 2.24.4.
+    # Loopback binding is intentional (setup.md section 6: UI on localhost).
+    ports: !override
+      - "127.0.0.1:5173:5173"
+    environment:
+      - BACKEND_PROXY_TARGET=http://backend:8000
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+
+volumes:
+  frontend_node_modules:

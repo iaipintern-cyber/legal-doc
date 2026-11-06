@@ -1,0 +1,12 @@
+# Never bake runtime data / local-only files into the image
+uploads/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.env
+wheels/
+test_e2e_features.py
+test_*.py
+Dockerfile
+.dockerignore

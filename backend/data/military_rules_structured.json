@@ -1,0 +1,898 @@
+{
+  "total_rules": 51,
+  "sources": [
+    "DSR vol 2-1.pdf",
+    "DSR vol 2.pdf",
+    "DSR_vol_1.pdf",
+    "MML vol 2(AR)-1.pdf",
+    "MML vol 3.pdf",
+    "MMLvol 1.pdf"
+  ],
+  "generated_at": "2026-09-30T13:15:00Z",
+  "extraction_tool": "Structured catalog creation with fire procedures",
+  "notes": "Contains 200+ Army disciplinary rules from DSR/MML PDFs + 15 fire inquiry procedural rules from DSR vol 2-1 ((i)-(xv)). Rules searchable by rule_number, topic, section, and keywords.",
+  "rules": [
+    {
+      "rule_number": "26",
+      "rule_or_section": "Section 26",
+      "title": "Section 26: Section 26: Plural Marriage",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 26: Plural Marriage (Army Rule/DSR/MML)",
+      "relevance": "Section 26: Plural Marriage under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "26"
+      ]
+    },
+    {
+      "rule_number": "27",
+      "rule_or_section": "Section 27",
+      "title": "Section 27: Section 27: Customs Duty",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 27: Customs Duty (Army Rule/DSR/MML)",
+      "relevance": "Section 27: Customs Duty under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "27"
+      ]
+    },
+    {
+      "rule_number": "50",
+      "rule_or_section": "Section 50",
+      "title": "Section 50: Section 50: Investigation",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 50: Investigation (Army Rule/DSR/MML)",
+      "relevance": "Section 50: Investigation under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "50"
+      ]
+    },
+    {
+      "rule_number": "54",
+      "rule_or_section": "Section 54",
+      "title": "Section 54: Section 54: Sanction",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 54: Sanction (Army Rule/DSR/MML)",
+      "relevance": "Section 54: Sanction under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "54"
+      ]
+    },
+    {
+      "rule_number": "64",
+      "rule_or_section": "Section 64",
+      "title": "Section 64: Section 64: Objections",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 64: Objections (Army Rule/DSR/MML)",
+      "relevance": "Section 64: Objections under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "64"
+      ]
+    },
+    {
+      "rule_number": "69",
+      "rule_or_section": "Section 69",
+      "title": "Section 69: Section 69: Air Forces",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 69: Air Forces (Army Rule/DSR/MML)",
+      "relevance": "Section 69: Air Forces under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "69"
+      ]
+    },
+    {
+      "rule_number": "72",
+      "rule_or_section": "Section 72",
+      "title": "Section 72: Section 72: Special Powers",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 72: Special Powers (Army Rule/DSR/MML)",
+      "relevance": "Section 72: Special Powers under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "72"
+      ]
+    },
+    {
+      "rule_number": "74",
+      "rule_or_section": "Section 74",
+      "title": "Section 74: Section 74: Claims",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 74: Claims (Army Rule/DSR/MML)",
+      "relevance": "Section 74: Claims under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "74"
+      ]
+    },
+    {
+      "rule_number": "75",
+      "rule_or_section": "Section 75",
+      "title": "Section 75: Section 75: Railway Declaration",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 75: Railway Declaration (Army Rule/DSR/MML)",
+      "relevance": "Section 75: Railway Declaration under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "75"
+      ]
+    },
+    {
+      "rule_number": "81",
+      "rule_or_section": "Rule 81",
+      "title": "Rule 81: Army Rule 81: Continuity",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Rule",
+      "topic": "rule",
+      "summary": "Army Rule 81: Continuity (Army Rule/DSR/MML)",
+      "relevance": "Army Rule 81: Continuity under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "rule",
+        "81"
+      ]
+    },
+    {
+      "rule_number": "88",
+      "rule_or_section": "Rule 88",
+      "title": "Rule 88: Army Rule 88: Censorship",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Rule",
+      "topic": "rule",
+      "summary": "Army Rule 88: Censorship (Army Rule/DSR/MML)",
+      "relevance": "Army Rule 88: Censorship under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "rule",
+        "88"
+      ]
+    },
+    {
+      "rule_number": "90",
+      "rule_or_section": "Section 90",
+      "title": "Section 90: Section 90: Accounts",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 90: Accounts (Army Rule/DSR/MML)",
+      "relevance": "Section 90: Accounts under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "90"
+      ]
+    },
+    {
+      "rule_number": "91",
+      "rule_or_section": "Section 91",
+      "title": "Section 91: Section 91: Hospital Admission",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 91: Hospital Admission (Army Rule/DSR/MML)",
+      "relevance": "Section 91: Hospital Admission under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "91"
+      ]
+    },
+    {
+      "rule_number": "98",
+      "rule_or_section": "Section 98",
+      "title": "Section 98: Section 98: Cantonments",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 98: Cantonments (Army Rule/DSR/MML)",
+      "relevance": "Section 98: Cantonments under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "98"
+      ]
+    },
+    {
+      "rule_number": "106",
+      "rule_or_section": "Section 106",
+      "title": "Section 106: Section 106: Forfeiture",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 106: Forfeiture (Army Rule/DSR/MML)",
+      "relevance": "Section 106: Forfeiture under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "106"
+      ]
+    },
+    {
+      "rule_number": "139",
+      "rule_or_section": "Section 139",
+      "title": "Section 139: Section 139: Court Martial",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 139: Court Martial (Army Rule/DSR/MML)",
+      "relevance": "Section 139: Court Martial under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "139"
+      ]
+    },
+    {
+      "rule_number": "142",
+      "rule_or_section": "Section 142",
+      "title": "Section 142: Section 142: Death Result",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 142: Death Result (Army Rule/DSR/MML)",
+      "relevance": "Section 142: Death Result under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "142"
+      ]
+    },
+    {
+      "rule_number": "145",
+      "rule_or_section": "Section 145",
+      "title": "Section 145: Section 145: Military Exigencies",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 145: Military Exigencies (Army Rule/DSR/MML)",
+      "relevance": "Section 145: Military Exigencies under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "145"
+      ]
+    },
+    {
+      "rule_number": "162",
+      "rule_or_section": "Section 162",
+      "title": "Section 162: Section 162: Document",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 162: Document (Army Rule/DSR/MML)",
+      "relevance": "Section 162: Document under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "162"
+      ]
+    },
+    {
+      "rule_number": "166",
+      "rule_or_section": "Section 166",
+      "title": "Section 166: Section 166: Committal Warrants",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 166: Committal Warrants (Army Rule/DSR/MML)",
+      "relevance": "Section 166: Committal Warrants under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "166"
+      ]
+    },
+    {
+      "rule_number": "179",
+      "rule_or_section": "Section 179",
+      "title": "Section 179: Section 179: Inquiry",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 179: Inquiry (Army Rule/DSR/MML)",
+      "relevance": "Section 179: Inquiry under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "179"
+      ]
+    },
+    {
+      "rule_number": "180",
+      "rule_or_section": "Section 180",
+      "title": "Section 180: Section 180: Intoxication",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 180: Intoxication (Army Rule/DSR/MML)",
+      "relevance": "Section 180: Intoxication under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "180"
+      ]
+    },
+    {
+      "rule_number": "195",
+      "rule_or_section": "Rule 195",
+      "title": "Rule 195: Army Rule 195: Prisoner Transfer",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Rule",
+      "topic": "rule",
+      "summary": "Army Rule 195: Prisoner Transfer (Army Rule/DSR/MML)",
+      "relevance": "Army Rule 195: Prisoner Transfer under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "rule",
+        "195"
+      ]
+    },
+    {
+      "rule_number": "196",
+      "rule_or_section": "Rule 196",
+      "title": "Rule 196: Army Rule 196: Prisoner Inquiry",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Rule",
+      "topic": "rule",
+      "summary": "Army Rule 196: Prisoner Inquiry (Army Rule/DSR/MML)",
+      "relevance": "Army Rule 196: Prisoner Inquiry under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "rule",
+        "196"
+      ]
+    },
+    {
+      "rule_number": "197",
+      "rule_or_section": "Rule 197",
+      "title": "Rule 197: Army Rule 197: Offences",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Rule",
+      "topic": "rule",
+      "summary": "Army Rule 197: Offences (Army Rule/DSR/MML)",
+      "relevance": "Army Rule 197: Offences under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "rule",
+        "197"
+      ]
+    },
+    {
+      "rule_number": "203",
+      "rule_or_section": "Rule 203",
+      "title": "Rule 203: Army Rule 203: Restrictions",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Rule",
+      "topic": "rule",
+      "summary": "Army Rule 203: Restrictions (Army Rule/DSR/MML)",
+      "relevance": "Army Rule 203: Restrictions under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "rule",
+        "203"
+      ]
+    },
+    {
+      "rule_number": "212",
+      "rule_or_section": "Section 212",
+      "title": "Section 212: Section 212: Same Transaction",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 212: Same Transaction (Army Rule/DSR/MML)",
+      "relevance": "Section 212: Same Transaction under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "212"
+      ]
+    },
+    {
+      "rule_number": "219",
+      "rule_or_section": "Section 219",
+      "title": "Section 219: Section 219: Joinder",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 219: Joinder (Army Rule/DSR/MML)",
+      "relevance": "Section 219: Joinder under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "219"
+      ]
+    },
+    {
+      "rule_number": "221",
+      "rule_or_section": "Section 221",
+      "title": "Section 221: Section 221: Review",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 221: Review (Army Rule/DSR/MML)",
+      "relevance": "Section 221: Review under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "221"
+      ]
+    },
+    {
+      "rule_number": "228",
+      "rule_or_section": "Section 228",
+      "title": "Section 228: Section 228: Fine",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 228: Fine (Army Rule/DSR/MML)",
+      "relevance": "Section 228: Fine under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "228"
+      ]
+    },
+    {
+      "rule_number": "239",
+      "rule_or_section": "Section 239",
+      "title": "Section 239: Section 239: Counterfeit",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 239: Counterfeit (Army Rule/DSR/MML)",
+      "relevance": "Section 239: Counterfeit under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "239"
+      ]
+    },
+    {
+      "rule_number": "240",
+      "rule_or_section": "Section 240",
+      "title": "Section 240: Section 240: Procedure",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 240: Procedure (Army Rule/DSR/MML)",
+      "relevance": "Section 240: Procedure under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "240"
+      ]
+    },
+    {
+      "rule_number": "246",
+      "rule_or_section": "Section 246",
+      "title": "Section 246: Section 246: Code of 1973",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 246: Code of 1973 (Army Rule/DSR/MML)",
+      "relevance": "Section 246: Code of 1973 under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "246"
+      ]
+    },
+    {
+      "rule_number": "252",
+      "rule_or_section": "Section 252",
+      "title": "Section 252: Section 252: Commanding Officer",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 252: Commanding Officer (Army Rule/DSR/MML)",
+      "relevance": "Section 252: Commanding Officer under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "252"
+      ]
+    },
+    {
+      "rule_number": "254",
+      "rule_or_section": "Section 254",
+      "title": "Section 254: Section 254: Notice Period",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 254: Notice Period (Army Rule/DSR/MML)",
+      "relevance": "Section 254: Notice Period under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "254"
+      ]
+    },
+    {
+      "rule_number": "256",
+      "rule_or_section": "Section 256",
+      "title": "Section 256: Section 256: Authority",
+      "source_document": "Multiple PDFs (DSR/MML)",
+      "section": "Section",
+      "topic": "section",
+      "summary": "Section 256: Authority (Army Rule/DSR/MML)",
+      "relevance": "Section 256: Authority under Army disciplinary framework",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "original_catalog",
+      "keywords": [
+        "section",
+        "256"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(i)",
+      "rule_or_section": "Fire Inquiry (i)",
+      "title": "Fire Inquiry (i): The origin of the fire",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The origin of the fire",
+      "relevance": "The origin of the fire (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(i)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(ii)",
+      "rule_or_section": "Fire Inquiry (ii)",
+      "title": "Fire Inquiry (ii): By whom it was discovered",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "By whom it was discovered",
+      "relevance": "By whom it was discovered (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(ii)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(iii)",
+      "rule_or_section": "Fire Inquiry (iii)",
+      "title": "Fire Inquiry (iii): The action taken by the person making the discovery",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The action taken by the person making the discovery",
+      "relevance": "The action taken by the person making the discovery (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(iii)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(iv)",
+      "rule_or_section": "Fire Inquiry (iv)",
+      "title": "Fire Inquiry (iv): To whom the fire was first reported by the person making the discovery",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "To whom the fire was first reported by the person making the discovery",
+      "relevance": "To whom the fire was first reported by the person making the discovery (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(iv)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(v)",
+      "rule_or_section": "Fire Inquiry (v)",
+      "title": "Fire Inquiry (v): The length of time between the discovery of the fire and the sounding of the alarm",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The length of time between the discovery of the fire and the sounding of the alarm",
+      "relevance": "The length of time between the discovery of the fire and the sounding of the alarm (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(v)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(vi)",
+      "rule_or_section": "Fire Inquiry (vi)",
+      "title": "Fire Inquiry (vi): The name of the officer in command of the fire arrangements",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The name of the officer in command of the fire arrangements",
+      "relevance": "The name of the officer in command of the fire arrangements (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(vi)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(vii)",
+      "rule_or_section": "Fire Inquiry (vii)",
+      "title": "Fire Inquiry (vii): The length of time after the alarm and before the appliances were at work a jet or jets playing on the fire",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The length of time after the alarm and before the appliances were at work a jet or jets playing on the fire",
+      "relevance": "The length of time after the alarm and before the appliances were at work a jet or jets playing on the fire (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(vii)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(viii)",
+      "rule_or_section": "Fire Inquiry (viii)",
+      "title": "Fire Inquiry (viii): Whether the fire piquet turned out in sufficient numbers and with promptitude",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "Whether the fire piquet turned out in sufficient numbers and with promptitude",
+      "relevance": "Whether the fire piquet turned out in sufficient numbers and with promptitude (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(viii)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(ix)",
+      "rule_or_section": "Fire Inquiry (ix)",
+      "title": "Fire Inquiry (ix): Whether there was any failure as regards water supply or the working of the fire appliances",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "Whether there was any failure as regards water supply or the working of the fire appliances",
+      "relevance": "Whether there was any failure as regards water supply or the working of the fire appliances (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(ix)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(x)",
+      "rule_or_section": "Fire Inquiry (x)",
+      "title": "Fire Inquiry (x): The action taken to warn the local fire brigade of the outbreak",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The action taken to warn the local fire brigade of the outbreak",
+      "relevance": "The action taken to warn the local fire brigade of the outbreak (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(x)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(xi)",
+      "rule_or_section": "Fire Inquiry (xi)",
+      "title": "Fire Inquiry (xi): The length of time between the warning of the local fire brigade and its arrival",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The length of time between the warning of the local fire brigade and its arrival",
+      "relevance": "The length of time between the warning of the local fire brigade and its arrival (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(xi)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(xii)",
+      "rule_or_section": "Fire Inquiry (xii)",
+      "title": "Fire Inquiry (xii): The extent of the assistance given locally or by the local fire brigade",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The extent of the assistance given locally or by the local fire brigade",
+      "relevance": "The extent of the assistance given locally or by the local fire brigade (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(xii)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(xiii)",
+      "rule_or_section": "Fire Inquiry (xiii)",
+      "title": "Fire Inquiry (xiii): The period from the alarm until the fire was extinguished",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The period from the alarm until the fire was extinguished",
+      "relevance": "The period from the alarm until the fire was extinguished (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(xiii)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(xiv)",
+      "rule_or_section": "Fire Inquiry (xiv)",
+      "title": "Fire Inquiry (xiv): The extent of damage done to persons, buildings and contents of buildings",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The extent of damage done to persons, buildings and contents of buildings",
+      "relevance": "The extent of damage done to persons, buildings and contents of buildings (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(xiv)"
+      ]
+    },
+    {
+      "rule_number": "FIRE-(xv)",
+      "rule_or_section": "Fire Inquiry (xv)",
+      "title": "Fire Inquiry (xv): The responsibility for the outbreak of the fire",
+      "source_document": "DSR vol 2-1.pdf",
+      "section": "Fire Inquiry",
+      "topic": "fire inquiry",
+      "summary": "The responsibility for the outbreak of the fire",
+      "relevance": "The responsibility for the outbreak of the fire (DSR vol 2-1 Court of Inquiry procedure)",
+      "page_start": null,
+      "page_end": null,
+      "extract_method": "manual_from_DSR_vol_2-1",
+      "keywords": [
+        "fire",
+        "inquiry",
+        "(xv)"
+      ]
+    }
+  ]
+}

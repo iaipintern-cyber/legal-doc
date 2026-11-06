@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Court of Inquiry -- DARK OLIVE + RED design system
+   Dark counterpart of the olive/crimson skin: deep olive-drab
+   canvas and cards, light olive text tiers, crimson accents.
+   Hover states lighten (dark-theme convention); structure and
+   class names unchanged -- values only.
+   ============================================================ */
+
+@theme {
+  /* Olive drab -- primary family */
+  --color-olive-50: #f2f5e6;
+  --color-olive-100: #e7ecd4;
+  --color-olive-200: #cbd5b4;
+  --color-olive-300: #adb787;
+  --color-olive-400: #8c9766;
+  --color-olive-500: #76884a;
+  --color-olive-600: #63773a;
+  --color-olive-700: #5d7430; /* primary action (dark theme) */
+  --color-olive-800: #10140a; /* header / footer chrome */
+  --color-olive-900: #2e3b1c;
+  --color-olive-950: #1f2a12;
+
+  /* Crimson -- accent family */
+  --color-crimson-50: #331511;
+  --color-crimson-100: #f8e2de;
+  --color-crimson-200: #eec9c2;
+  --color-crimson-300: #e3b4aa;
+  --color-crimson-400: #d4736a;
+  --color-crimson-500: #c44a3c;
+  --color-crimson-600: #b33324;
+  --color-crimson-700: #c23a2c; /* accent action (dark theme) */
+  --color-crimson-800: #7e2018;
+  --color-crimson-900: #6b1a12;
+  --color-crimson-950: #4a120d;
+
+  /* Dark surfaces */
+  --color-paper: #242b16;
+  --color-canvas: #171b0e;
+}
+
+@layer base {
+  body {
+    background-color: #171b0e;
+    color: #dfe4c6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  /* The accent travels with interaction: crimson selection,
+     crimson keyboard focus ring everywhere. */
+  ::selection {
+    background-color: #b33324;
+    color: #ffffff;
+  }
+  :focus-visible {
+    outline: 2px solid #c23a2c;
+    outline-offset: 2px;
+  }
+}
+
+/* ---- Surface remaps: shared utilities restyled app-wide ---- */
+/* Dark olive cards replace parchment; no stark white anywhere. */
+.bg-white {
+  background-color: #242b16;
+}
+
+/* focus:bg-white would flash pure white on a dark form -- lift subtly instead. */
+.focus\:bg-white:focus {
+  background-color: #2c3419;
+}
+
+.bg-red-50 {
+  background-color: #331511;
+}
+
+.border-red-200 {
+  border-color: #5a261e;
+}
+
+.text-red-700,
+.text-red-900 {
+  color: #e0655a;
+}
+
+.clean-card {
+  background-color: #242b16;
+  border: 1px solid #3a4324;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* ---- Primary Action Buttons (hover lifts on dark) ---- */
+.btn-army-primary {
+  background-color: #5d7430;
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+.btn-army-primary:hover {
+  background-color: #4f6129;
+}
+.btn-army-primary:active {
+  background-color: #455524;
+}
+
+.btn-army-red {
+  background-color: #b33324;
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+.btn-army-red:hover {
+  background-color: #8f2519;
+}
+.btn-army-red:active {
+  background-color: #7a1e14;
+}
+
+/* ---- Olive scrollbars on dark ---- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5430 #1e2410;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1e2410;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a5430;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #606b41;
+}
+
+/* ---- Draft page (Court of Inquiry document) ---- */
+/* Force a white background and dark text so the document is legible */
+.draft-page {
+  background-color: #ffffff;
+  color: #1c1917;
+}
+/* Override any child text that might inherit a light color */
+.draft-page * {
+  color: inherit;
+}

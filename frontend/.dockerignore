@@ -1,0 +1,7 @@
+# Keep the build context small and deterministic
+node_modules
+dist
+README.md
+*.log
+Dockerfile
+.dockerignore

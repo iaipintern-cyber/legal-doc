@@ -1,0 +1,262 @@
+================================================================================
+  COURT OF INQUIRY - OFFLINE PC UPDATE VIA ONE 4.3 GB DVD
+  Date: 04 Nov 2026
+  Source: this PC (online)   Target: air-gapped Linux PC (x86_64 + Docker)
+================================================================================
+
+CONTENTS OF THIS FILE
+  PART A - What to burn onto the DVD (file list)
+  PART B - Commands to run on the offline PC (step by step)
+  PART C - Troubleshooting
+  PART D - Rollback
+
+
+================================================================================
+PART A - WHAT TO BURN ONTO THE DVD
+================================================================================
+
+Burn the following as a plain DATA disc (any tool: Windows Explorer "Burn a
+disc image", ImgBurn, Brasero, k3b - NOT audio/video mode).
+
+  FILE                      SIZE     SOURCE FOLDER (on this PC)
+  ------------------------  -------  ------------------------------------
+  legal-code.part-000       443 MB   offline\transfer\
+  legal-backend.tar         587 MB   docker-images\
+  legal-frontend.tar         20 MB   docker-images\
+  DVD-SHA256SUMS.txt        ~200 B   project root (same folder as this file)
+  DVD-TRANSFER-COMMANDS.txt   ~11 KB  project root (this file)
+
+  TOTAL                     ~1.05 GB of 4.3 GB  (about 3.2 GB free on the DVD)
+
+OPTIONAL - small, recommended to burn along:
+  UPDATE-TRANSFER.md          detailed runbook (same steps as this file)
+  code-update-strategy.md     design notes: when to use this update method
+
+DO NOT burn (not needed / does not fit):
+  legal-ollama-gemma3-4b.tar  6.03 GB - DOES NOT FIT on one DVD, and the
+                              Ollama model is UNCHANGED - it is already on
+                              the offline PC from the original bundle.
+  compose.yml                 unchanged - already on the offline PC.
+  offline\ollama\...          Ollama models - already on the offline PC.
+  backend\wheels\             Windows-only wheels - not used on Linux.
+
+WHAT THIS UPDATE CONTAINS (code changed 03 Nov 2026):
+  backend : main.py, services/llm_service.py, services/report_generator.py
+  frontend: App.jsx, components/WitnessStep.jsx, components/CoiDraftStep.jsx,
+            index.css
+  Effect  : case/step persists across page reloads, new Witness "Unit" field,
+            restyled Court of Inquiry draft document page.
+
+
+================================================================================
+PART B - COMMANDS ON THE OFFLINE PC (run in order, paste into terminal)
+================================================================================
+
+--------------------------------------------------------------------------------
+STEP 0 - Insert the DVD and copy its contents
+--------------------------------------------------------------------------------
+
+# Find the DVD mount point:
+lsblk -o MOUNTPOINT,LABEL,SIZE | grep -iv loop
+df -h | grep -E 'media|mnt|run/media'
+
+# Set DVD to YOUR mount point shown above (example - CHANGE THE LABEL):
+DVD=/media/$USER/DVD_LABEL
+XFER="$HOME/legal-transfer"
+mkdir -p "$XFER"
+cp "$DVD"/* "$XFER"/
+
+# If the DVD did not auto-mount:
+#   sudo mkdir -p /mnt/dvd && sudo mount /dev/sr0 /mnt/dvd
+#   DVD=/mnt/dvd
+
+# Verify the copy:
+ls -lh "$XFER"
+# Expected:
+#   legal-code.part-000   443M
+#   legal-backend.tar     587M
+#   legal-frontend.tar     20M
+#   DVD-SHA256SUMS.txt
+#   DVD-TRANSFER-COMMANDS.txt
+#   (+ the optional .md files if you burned them)
+
+--------------------------------------------------------------------------------
+STEP 1 - Verify checksums  (STOP if any line says FAILED)
+--------------------------------------------------------------------------------
+
+cd "$XFER"
+sha256sum -c DVD-SHA256SUMS.txt
+
+# Expected output - every line must say OK:
+#   legal-code.part-000: OK
+#   legal-backend.tar: OK
+#   legal-frontend.tar: OK
+#
+# If FAILED -> recopy that single file from the DVD, run this step again.
+# Do not continue until all three say OK.
+
+--------------------------------------------------------------------------------
+STEP 2 - Extract the updated source code
+--------------------------------------------------------------------------------
+
+mkdir -p "$HOME/legal-staging-code"
+cat legal-code.part-000 > legal-code.tar.gz
+gzip -t legal-code.tar.gz && echo "gzip integrity OK"
+tar -xzf legal-code.tar.gz -C "$HOME/legal-staging-code"
+
+ls "$HOME/legal-staging-code"
+# Expected: backend/   frontend/
+
+--------------------------------------------------------------------------------
+STEP 3 - Overlay source onto the project  (PRESERVES your case data)
+--------------------------------------------------------------------------------
+
+cp -a "$HOME/legal-staging-code/backend/."  "$HOME/legal/backend/"
+cp -a "$HOME/legal-staging-code/frontend/." "$HOME/legal/frontend/"
+
+# The "./" copy keeps hidden files and permissions.
+# DO NOT delete backend/uploads/ or data/ - the overlay preserves them.
+
+--------------------------------------------------------------------------------
+STEP 4 - Load the prebuilt Docker images  (replaces the slow docker build)
+--------------------------------------------------------------------------------
+
+docker load -i "$XFER/legal-backend.tar"
+#   -> Loaded image: legal-backend:1.0   (also tagged :latest)
+docker load -i "$XFER/legal-frontend.tar"
+#   -> Loaded image: legal-frontend:1.0  (also tagged :latest)
+
+Both tags are inside each tar, so compose.yml finds them immediately.
+(Loading replaces the tags - the old images remain only as dangling
+ back-ups, see PART D.)
+
+--------------------------------------------------------------------------------
+STEP 5 - (Re)start the stack
+--------------------------------------------------------------------------------
+
+cd "$HOME/legal"
+docker compose up -d --pull never --no-build
+
+# Fallbacks:
+#   docker does not know "--pull"  ->  docker compose up -d --no-build
+#   "docker compose" not found    ->  ./docker-compose-linux-x86_64 up -d --no-build
+#                                    (standalone compose binary from the original
+#                                     bundle, if it is in this folder)
+
+--------------------------------------------------------------------------------
+STEP 6 - Verify
+--------------------------------------------------------------------------------
+
+docker ps
+# Expected - all three Up:
+#   legal-backend    healthy   (legal-backend:1.0)
+#   legal-frontend   healthy   (legal-frontend:1.0)
+#   legal-ollama     Up        (ollama/ollama:0.6.8)
+
+curl --fail http://127.0.0.1:8080/api/health
+# Expected: {"status":"ACTIVE","system":"Court of Inquiry Generation",...}
+
+# Prove the NEW frontend build is being served:
+ASSET=$(curl -s http://127.0.0.1:8080/ | grep -o 'assets/index-[A-Za-z0-9_-]*\.js' | head -1)
+echo "bundle: $ASSET"
+curl -s "http://127.0.0.1:8080/$ASSET" | grep -o 'coi_user' | head -1
+# Expected output line:  coi_user
+# (that string only exists in the updated frontend)
+
+# Prove the Ollama model still works (first call loads the model - be patient):
+docker compose exec ollama ollama list
+# Expected: gemma3:4b  ...
+docker compose exec ollama ollama run gemma3:4b 'Reply with exactly: READY'
+# Expected: READY
+
+# Optional - OCR engine check:
+docker compose exec backend tesseract --list-langs
+
+--------------------------------------------------------------------------------
+STEP 7 - Open the UI and smoke-test
+--------------------------------------------------------------------------------
+
+Open in the browser ON the offline PC:   http://localhost:8080
+
+  [ ] Reload the page in the middle of the flow - the case and current step
+      should be restored (new persistence feature)
+  [ ] Add a Witness and fill in the new "Unit" field
+  [ ] Draft page appears as a white document with dark text
+  [ ] Analysis / report generation still works
+
+--------------------------------------------------------------------------------
+STEP 8 - Done
+--------------------------------------------------------------------------------
+
+Eject the DVD. To stop the stack later:     cd "$HOME/legal" && docker compose down
+To start it again:                          Step 5 command.
+
+NOTE: you do NOT need to run "docker build" anywhere - the images loaded in
+Step 4 already contain the new code (built and verified on the online PC).
+If you ever prefer rebuilding from source instead, follow Step 5 of
+offline-commands.md (docker build ...) - but do not do both.
+
+
+================================================================================
+PART C - TROUBLESHOOTING
+================================================================================
+
+PROBLEM                                   FIX
+----------------------------------------  ------------------------------------
+sha256sum line says FAILED                Recopy that one file from the DVD and
+                                          re-run STEP 1. Never mix copies.
+
+docker load: "manifest type not supported"
+                                          Offline Docker is too old for this tar
+                                          format -> rebuild from source instead:
+                                            cd $HOME/legal
+                                            docker build --platform linux/amd64 \
+                                              -f backend/Dockerfile -t legal-backend:1.0 .
+                                            docker build --platform linux/amd64 \
+                                              -f frontend/Dockerfile --target production \
+                                              -t legal-frontend:1.0 .
+                                          then continue with STEP 5.
+
+compose: image "legal-backend:1.0" not    STEP 4 (docker load) was skipped or
+found                                     failed. Re-run STEP 4, then STEP 5.
+
+UI still looks old after update           The frontend is compiled INTO the image.
+                                          Both STEP 4 (load) and STEP 5 (restart)
+                                          must have run.
+
+/api/health fails                         docker logs legal-backend | tail -50
+                                          docker ps   <- is backend healthy?
+
+Ollama: model not found                   Models live in offline/ollama/ on the
+                                          host (mounted into the container) - do
+                                          not delete that folder:
+                                            docker compose exec ollama ollama list
+
+"docker compose" is not recognized         Use the standalone binary from the
+                                          original bundle (see STEP 5 fallback).
+
+Port 8080 already in use                  docker ps --filter publish=8080
+                                          stop whatever holds it, re-run STEP 5.
+
+
+================================================================================
+PART D - ROLLBACK (if the update is bad)
+================================================================================
+
+# The OLD images still exist as untagged (dangling) images:
+docker images -a --filter dangling=true
+# Identify the old legal-backend / legal-frontend by their creation date
+# (older than 03 Nov 2026), then re-tag them:
+docker tag <OLD_BACKEND_ID>   legal-backend:1.0
+docker tag <OLD_FRONTEND_ID>  legal-frontend:1.0
+cd "$HOME/legal" && docker compose up -d --pull never --no-build
+
+# Source rollback: re-run STEP 3 with the PREVIOUS legal-code.part-000
+# (keep the old DVD until the new update is accepted).
+
+# Nothing else needs reverting: backend/uploads/, data/ and the Ollama
+# models were NOT touched by this update.
+
+================================================================================
+END OF FILE
+================================================================================

@@ -1,0 +1,21 @@
+# Build-context exclusions (root context -- setup.md section 2 builds with `-f backend/Dockerfile .`)
+# Keeps Windows-only, local-only and multi-GB data out of every image build.
+**/node_modules
+**/dist
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/.env
+**/.env.*
+**/*.bat
+**/*.exe
+backend/uploads
+backend/wheels
+backend/test_*.py
+docker-images
+ollama-docker
+offline
+transfer
+data
+.preflight.sh
+.git
